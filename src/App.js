@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link } from "react-router-dom";
+import React from "react";
+import { Button } from "antd";
+import "./App.css";
+import { Layout, Menu, theme } from "antd";
 
-function App() {
+const { Header, Content, Footer, Sider } = Layout;
+
+const App = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout hasSider>
+      <Sider className="side">
+        <div className="demo-logo-vertical" />
+        <Button>
+          <Link to="/">首页</Link>
+        </Button>
+        <Button>
+          <Link to="/home">首页1</Link>
+        </Button>
+      </Sider>
+      <Layout
+        style={{
+          marginInlineStart: 200,
+        }}
+      >
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+          }}
+        />
+        <Content className="content">
+          <div
+            style={{
+              padding: 24,
+              textAlign: "center",
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            content
+          </div>
+        </Content>
+        <Footer
+          style={{
+            textAlign: "center",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          footer
+        </Footer>
+      </Layout>
+    </Layout>
   );
-}
+};
 
 export default App;
